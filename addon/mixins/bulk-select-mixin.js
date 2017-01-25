@@ -17,7 +17,7 @@ export default Ember.Mixin.create({
     const selections = this.get('selections');
     return this.get('selectableObjects').map(object => ({
       object,
-      selected: selections.contains(object),
+      selected: selections.includes(object),
     }));
   }),
 
