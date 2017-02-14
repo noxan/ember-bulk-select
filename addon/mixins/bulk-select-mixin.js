@@ -35,7 +35,11 @@ export default Ember.Mixin.create({
   hasSelection: computed.notEmpty('selectedObjects.[]'),
 
   /** True if all objects are selected, otherwise false. */
-  hasAllSelected: computed.equal('selectedObjects.length', 'selectableObjects.length'),
+  hasAllSelected: computed('selectedObjects.length', 'selectableObjects.length', function () {
+    const selectedObjects = this.get('selectedObjects.length');
+    const selectableObjects = this.get('selectableObjects.length');
+    return selectedObjects === selectableObjects;
+  }),
 
   /** Resets the selection if the component is left. */
   willDestroyElement() {
