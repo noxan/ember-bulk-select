@@ -11,7 +11,9 @@ export default Ember.Component.extend({
 
   actions: {
     selectObject(object, event) {
+      event.stopPropagation();
       this.get('select')(object, event);
+      return false;
     },
   },
 });
